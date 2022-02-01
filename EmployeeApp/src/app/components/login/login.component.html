@@ -1,0 +1,45 @@
+<div class="text-center">
+
+  <main class="form-signin ">
+    <h1 class="h3 mb-3 fw-normal">EMPLOYEE MANAGEMENT SYSTEM</h1>
+    <div class="setwidth mx-auto">
+
+      <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)">
+        <h1 class="h6 mb-3 fw-normal">PLEASE SIGN IN</h1>
+  
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="username" formControlName="username" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Username</label>
+          <div *ngIf="loginForm.get('username')?.touched"> 
+            <span class="text-danger" *ngIf="loginForm.get('username')?.hasError('required')"><small>Username required.</small></span>
+            <span class="text-danger" *ngIf="loginForm.get('username')?.hasError('minlength')"><small>Username is at least 3 characters long.</small></span>
+        </div> 
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" name="passsword" formControlName="password" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+          <div *ngIf="loginForm.get('password')?.touched"> 
+            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('required')"><small>Password is required.</small></span>
+            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('minlength')"><small>Password is at least of 6 characters.</small></span>
+        </div> 
+        </div>
+        
+        <p *ngIf="invalidCredentials" class="text-danger my-2">Invalid Credentials</p>
+      
+      <button class="w-100 btn btn-lg btn-primary" [disabled]="!loginForm.valid || signinloadingFlag" type="submit">
+        <div *ngIf="!signinloadingFlag">
+          Sign in
+
+        </div>
+        <div *ngIf="signinloadingFlag">
+
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Signing in... 
+        </div>
+      </button>
+    </form>
+    </div>
+  </main>
+    </div>
